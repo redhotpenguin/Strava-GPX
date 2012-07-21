@@ -38,11 +38,15 @@ sub to_gpx {
     my $self = shift;
 
     my $gpx = Geo::Gpx->new;
+    my @points;
     foreach my $latlng ( @{$self->{latlng}} ) {
-        $gpx->add_waypoint({ lat => $latlng->[0], lon => $latlng->[1] });
+        push @points, { lat => $latlng->[0], lon => $latlng->[1] };
     }
+    my $tracks = [ { name => $self->{url},
+        segments => [ { points => \@points, } ], } ];
+    $gpx->tracks($tracks);
 
-    return $gpx->xml( '1.1' );
+    return $gpx->xml( '1.0' );
 }
 
 __END__
