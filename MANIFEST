@@ -1,0 +1,7 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Strava-GPX.t
+lib/Strava/GPX.pm
+bin/to_gpx.pl
